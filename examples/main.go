@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	foldercompare "github.com/codetraceio/folder-compare"
+	"github.com/codetraceio/foldercompare"
 )
 
 func main() {

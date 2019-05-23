@@ -33,8 +33,10 @@ func CreateSnapshot(folderPath string) (*FolderSnapshot, error) {
 		if err != nil {
 			return err
 		}
-
-		snapshot.filesMap[strings.Replace(path, absPath, "", -1)] = info
+		var key = strings.Replace(path, absPath, "", -1)
+		if key != "" {
+			snapshot.filesMap[strings.Replace(path, absPath, "", -1)] = info
+		}
 		return nil
 	})
 
@@ -56,7 +58,7 @@ func CompareSnapshots(firstFolder FolderSnapshot, secondFolder FolderSnapshot) f
 		}
 	}
 
-	// return 1 - ((similiarCount * 2) / float32(len(firstFolder.filesMap)+len(secondFolder.filesMap)))
+	//return 1 - ((similiarCount * 2) / float32(len(firstFolder.filesMap)+len(secondFolder.filesMap)))
 	return 1 - similiarCount/float32(maxInt(len(firstFolder.filesMap), len(secondFolder.filesMap)))
 }
 
